@@ -37,13 +37,13 @@ class GitPull extends Command
      */
     public function handle()
     {
-        $newBranch = $this->argument('branch');
+        $branch = $this->argument('branch');
 
         $this->info(shell_exec('php artisan down'));
         $this->info(shell_exec('git clean -f -d'));
         $this->info(shell_exec('git reset --hard HEAD'));
-        $this->info(shell_exec("git checkout $newBranch"));
-        $this->info(shell_exec("git pull origin $newBranch"));
+        $this->info(shell_exec("git checkout $branch"));
+        $this->info(shell_exec("git pull origin $branch"));
         $this->info(shell_exec('php artisan migrate --force'));
         $this->info(shell_exec('php artisan config:clear'));
         $this->info(shell_exec('php artisan up'));
