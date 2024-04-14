@@ -44,7 +44,7 @@ class GitPull extends Command
         $this->info(shell_exec('git reset --hard HEAD'));
         $this->info(shell_exec("git checkout $branch"));
         $this->info(shell_exec("git pull origin $branch"));
-        $this->info(shell_exec('composer install'));
+        $this->info(shell_exec('composer install --ignore-platform-reqs'));
         $this->info(shell_exec('php artisan migrate --force'));
         $this->info(shell_exec('php artisan config:clear'));
         $this->info(shell_exec('php artisan up'));
