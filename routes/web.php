@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Chat\MessageController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +19,8 @@ Route::get('/', function () {
     return view('chat');
 });
 
-Route::post('messages', function (\Illuminate\Http\Request $request) {
-    \App\Events\Message::dispatch($request->input('body'));
-});
+Route::post('messages', [MessageController::class, 'message']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

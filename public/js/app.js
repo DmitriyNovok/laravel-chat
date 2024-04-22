@@ -5163,7 +5163,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     sendMessage: function sendMessage() {
       axios.post('/messages', {
-        body: this.messageText
+        message: this.messageText
       });
       this.messages.push(this.messageText);
       this.messageText = '';

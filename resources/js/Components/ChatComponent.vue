@@ -20,7 +20,7 @@
         },
         methods: {
             sendMessage() {
-                axios.post('/messages', { body: this.messageText });
+                axios.post('/messages', { message: this.messageText });
                 this.messages.push(this.messageText);
                 this.messageText = '';
             }
