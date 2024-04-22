@@ -1,10 +1,8 @@
 <template>
     <div class="container">
-        <hr>
         <div class="row">
             <div class="col-sm-12">
-                <textarea class="form-control" rows="10" readonly>{{messages.join('\n')}}</textarea>
-                <hr>
+                <textarea class="form-control mb-4" rows="10" readonly>{{messages.join('\n')}}</textarea>
                 <input @keyup.enter="sendMessage" v-model="messageText" type="text" class="form-control">
             </div>
         </div>

@@ -5216,17 +5216,17 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "container"
-  }, [_c("hr"), _vm._v(" "), _c("div", {
+  }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-sm-12"
   }, [_c("textarea", {
-    staticClass: "form-control",
+    staticClass: "form-control mb-4",
     attrs: {
       rows: "10",
       readonly: ""
     }
-  }, [_vm._v(_vm._s(_vm.messages.join("\n")))]), _vm._v(" "), _c("hr"), _vm._v(" "), _c("input", {
+  }, [_vm._v(_vm._s(_vm.messages.join("\n")))]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
