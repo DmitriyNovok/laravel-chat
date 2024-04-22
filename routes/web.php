@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('chat');
 });
 
-Route::post('messages', [MessageController::class, 'message']);
+Route::post('messages', [MessageController::class, 'message'])->name('messages');
 
 Auth::routes();
 

@@ -5154,6 +5154,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ChatComponent',
+  props: {
+    route_messages: String
+  },
   data: function data() {
     return {
       messages: [],
@@ -5162,7 +5165,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMessage: function sendMessage() {
-      axios.post('/messages', {
+      axios.post(this.route_messages, {
         message: this.messageText
       });
       this.messages.push(this.messageText);

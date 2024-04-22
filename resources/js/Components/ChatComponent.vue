@@ -12,6 +12,9 @@
 <script>
     export default {
         name: 'ChatComponent',
+        props: {
+            route_messages: String
+        },
         data() {
             return {
                 messages: [],
@@ -20,7 +23,7 @@
         },
         methods: {
             sendMessage() {
-                axios.post('/messages', { message: this.messageText });
+                axios.post(this.route_messages, { message: this.messageText });
                 this.messages.push(this.messageText);
                 this.messageText = '';
             }
