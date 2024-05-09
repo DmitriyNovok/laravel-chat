@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('chat');
-});
-
-Route::post('messages', [MessageController::class, 'message'])->name('messages');
-
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::view('/', 'chat')->middleware('auth');
+
+Route::post('messages', [MessageController::class, 'message'])->name('messages')->middleware('auth');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
