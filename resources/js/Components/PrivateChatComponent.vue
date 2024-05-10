@@ -13,7 +13,8 @@
     export default {
         name: 'PrivateChatComponent',
         props: {
-            route_messages: String
+            route_messages: String,
+            channel: String
         },
         data() {
             return {
@@ -23,13 +24,13 @@
         },
         methods: {
             sendMessage() {
-                axios.post(this.route_messages, { message: this.message, channel_id: 11 });
+                axios.post(this.route_messages, { message: this.message, channel: this.channel });
                 this.messages.push(this.message);
                 this.message = '';
             }
         },
         mounted() {
-            window.Echo.private('channel.11')
+            window.Echo.private('channel.' + this.channel)
                 .listen('PrivateMessage', ({data}) => {
                     this.messages.push(data.message)
                 })

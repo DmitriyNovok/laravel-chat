@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Chat\ChannelController;
 use App\Http\Controllers\Chat\MessageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +21,7 @@ Auth::routes();
 Route::view('/', 'chat')->middleware('auth');
 
 Route::post('messages', [MessageController::class, 'message'])->name('messages')->middleware('auth');
+
+Route::get('/channels/{channel}', [ChannelController::class, 'channels'])->name('channels')->middleware('auth');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');

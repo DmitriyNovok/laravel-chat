@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Channel;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('channel.{channel_id}', function ($user, $channel_id) {
-    return (int) $user->id === (int) $channel_id;
+Broadcast::channel('channel.{channel}', function ($user, $channel) {
+    return $user->channels->contains(
+        Channel::where('slug', $channel)->first()->id
+    );
 });

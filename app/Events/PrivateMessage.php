@@ -13,9 +13,11 @@ use Illuminate\Queue\SerializesModels;
 
 class PrivateMessage implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable,
+        InteractsWithSockets,
+        SerializesModels;
 
-    public $data;
+    public array $data;
 
     /**
      * Create a new event instance.
@@ -31,10 +33,10 @@ class PrivateMessage implements ShouldBroadcastNow
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return Channel
+     * @return Channel|PrivateChannel
      */
-    public function broadcastOn()
+    public function broadcastOn(): Channel|PrivateChannel
     {
-        return new PrivateChannel('channel.' . $this->data['channel_id']);
+        return new PrivateChannel('channel.' . $this->data['channel']);
     }
 }
