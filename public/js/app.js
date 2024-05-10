@@ -5198,12 +5198,15 @@ __webpack_require__.r(__webpack_exports__);
   name: 'PrivateChatComponent',
   props: {
     route_messages: String,
-    channel: String
+    channel: String,
+    user: Object
   },
   data: function data() {
     return {
       messages: [],
-      message: ''
+      message: '',
+      isActive: false,
+      typingTimer: false
     };
   },
   methods: {
@@ -5214,6 +5217,11 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.messages.push(this.message);
       this.message = '';
+    },
+    actionUser: function actionUser() {
+      window.Echo["private"]('channel.' + this.channel).whisper('typing', {
+        name: this.user.name
+      });
     }
   },
   mounted: function mounted() {
@@ -5221,6 +5229,15 @@ __webpack_require__.r(__webpack_exports__);
     window.Echo["private"]('channel.' + this.channel).listen('PrivateMessage', function (_ref) {
       var data = _ref.data;
       _this.messages.push(data.message);
+      _this.isActive = false;
+    }).listenForWhisper('typing', function (e) {
+      _this.isActive = e;
+      if (_this.typingTimer) {
+        clearTimeout(_this.typingTimer);
+      }
+      _this.typingTimer = setTimeout(function () {
+        _this.isActive = false;
+      }, 2000);
     });
   }
 });
@@ -5351,12 +5368,13 @@ var render = function render() {
         if (!$event.type.indexOf("key") && _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")) return null;
         return _vm.sendMessage.apply(null, arguments);
       },
+      keydown: _vm.actionUser,
       input: function input($event) {
         if ($event.target.composing) return;
         _vm.message = $event.target.value;
       }
     }
-  })])])]);
+  }), _vm._v(" "), _vm.isActive ? _c("span", [_vm._v(_vm._s(_vm.isActive.name) + " печатает...")]) : _vm._e()])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

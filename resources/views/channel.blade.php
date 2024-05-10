@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <private-chat-component
-                route_messages="{{ route('messages') }}"
-                channel="{{ $channel }}">
-        </private-chat-component>
-    </div>
+    @if(Auth::check())
+        <div class="container">
+            <private-chat-component
+                    :user="{{ Auth::user() }}"
+                    route_messages="{{ route('messages') }}"
+                    channel="{{ $channel }}">
+            </private-chat-component>
+        </div>
+    @endif
 @endsection
