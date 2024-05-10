@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <chat-component route_messages="{{route('messages')}}"></chat-component>
+        <private-chat-component route_messages="{{route('messages')}}"></private-chat-component>
     </div>
 @endsection
