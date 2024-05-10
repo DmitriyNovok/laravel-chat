@@ -37,6 +37,6 @@ class PrivateMessage implements ShouldBroadcastNow
      */
     public function broadcastOn(): Channel|PrivateChannel
     {
-        return new PrivateChannel('channel.' . $this->data['channel']);
+        return new PresenceChannel('channel.' . $this->data['channel']);
     }
 }

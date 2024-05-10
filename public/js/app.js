@@ -5206,7 +5206,8 @@ __webpack_require__.r(__webpack_exports__);
       messages: [],
       message: '',
       isActive: false,
-      typingTimer: false
+      typingTimer: false,
+      activeUsers: []
     };
   },
   methods: {
@@ -5219,14 +5220,20 @@ __webpack_require__.r(__webpack_exports__);
       this.message = '';
     },
     actionUser: function actionUser() {
-      window.Echo["private"]('channel.' + this.channel).whisper('typing', {
+      window.Echo.join('channel.' + this.channel).whisper('typing', {
         name: this.user.name
       });
     }
   },
   mounted: function mounted() {
     var _this = this;
-    window.Echo["private"]('channel.' + this.channel).listen('PrivateMessage', function (_ref) {
+    window.Echo.join('channel.' + this.channel).here(function (users) {
+      _this.activeUsers = users;
+    }).joining(function (user) {
+      _this.activeUsers.push(user);
+    }).leaving(function (user) {
+      _this.activeUsers.splice(_this.activeUsers.indexOf(user), 1);
+    }).listen('PrivateMessage', function (_ref) {
       var data = _ref.data;
       _this.messages.push(data.message);
       _this.isActive = false;
@@ -5342,7 +5349,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-sm-12"
+    staticClass: "col-sm-8"
   }, [_c("textarea", {
     staticClass: "form-control mb-4",
     attrs: {
@@ -5374,7 +5381,13 @@ var render = function render() {
         _vm.message = $event.target.value;
       }
     }
-  }), _vm._v(" "), _vm.isActive ? _c("span", [_vm._v(_vm._s(_vm.isActive.name) + " печатает...")]) : _vm._e()])])]);
+  }), _vm._v(" "), _vm.isActive ? _c("span", [_vm._v(_vm._s(_vm.isActive.name) + " печатает...")]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-sm-4"
+  }, [_c("p", {
+    staticClass: "text-black"
+  }, [_vm._v("В сети")]), _vm._v(" "), _c("ul", _vm._l(_vm.activeUsers, function (activeUser) {
+    return _c("li", [_vm._v(_vm._s(activeUser))]);
+  }), 0)])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

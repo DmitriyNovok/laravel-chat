@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('channel.{channel}', function ($user, $channel) {
-    return $user->channels->contains(
-        Channel::where('slug', $channel)->first()->id
-    );
+    $channelId = Channel::where('slug', $channel)->first()->id;
+    if ($user->channels->contains($channelId)) {
+        return $user->name;
+    }
 });

@@ -1,10 +1,16 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-8">
                 <textarea class="form-control mb-4" rows="10" readonly>{{messages.join('\n')}}</textarea>
                 <input @keyup.enter="sendMessage" @keydown="actionUser" v-model="message" type="text" class="form-control">
                 <span v-if="isActive">{{ isActive.name }} печатает...</span>
+            </div>
+            <div class="col-sm-4">
+                <p class="text-black">В сети</p>
+                <ul>
+                    <li v-for="activeUser in activeUsers">{{ activeUser }}</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -23,7 +29,8 @@
                 messages: [],
                 message : '',
                 isActive: false,
-                typingTimer: false
+                typingTimer: false,
+                activeUsers: []
             }
         },
         methods: {
@@ -33,14 +40,23 @@
                 this.message = '';
             },
             actionUser() {
-                window.Echo.private('channel.' + this.channel)
+                window.Echo.join('channel.' + this.channel)
                     .whisper('typing', {
                         name: this.user.name
                     })
             }
         },
         mounted() {
-            window.Echo.private('channel.' + this.channel)
+            window.Echo.join('channel.' + this.channel)
+                .here((users) => {
+                    this.activeUsers = users;
+                })
+                .joining((user) => {
+                    this.activeUsers.push(user);
+                })
+                .leaving((user) => {
+                    this.activeUsers.splice(this.activeUsers.indexOf(user), 1)
+                })
                 .listen('PrivateMessage', ({data}) => {
                     this.messages.push(data.message);
                     this.isActive = false;
