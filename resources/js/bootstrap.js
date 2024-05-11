@@ -30,6 +30,8 @@ window.Echo = new Echo({
   transports: ['websocket', 'polling', 'flashsocket']
 });
 
+console.log(window.location.hostname + ':6001');
+
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,

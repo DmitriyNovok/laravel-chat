@@ -5459,6 +5459,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   host: window.location.hostname + ':6001',
   transports: ['websocket', 'polling', 'flashsocket']
 });
+console.log(window.location.hostname + ':6001');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
