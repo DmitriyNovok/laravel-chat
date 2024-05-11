@@ -5520,7 +5520,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsPort: 8443,
   wssPort: 8443,
   disableStats: true,
-  enabledTransports: ['ws', 'wss']
+  enabledTransports: ['ws', 'wss'],
+  transports: ['websocket', 'polling', 'flashsocket']
 });
 
 // window.Echo = new Echo({

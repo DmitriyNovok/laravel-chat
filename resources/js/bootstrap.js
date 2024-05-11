@@ -32,6 +32,7 @@ window.Echo = new Echo({
   wssPort: 8443,
   disableStats: true,
   enabledTransports: ['ws', 'wss'],
+  transports: ['websocket', 'polling', 'flashsocket']
 });
 
 // window.Echo = new Echo({
