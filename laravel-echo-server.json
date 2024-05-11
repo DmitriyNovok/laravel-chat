@@ -11,7 +11,7 @@
 	},
 	"devMode": true,
 	"host": null,
-	"port": "2095",
+	"port": "8443",
 	"protocol": "http",
 	"socketio": {},
 	"secureOptions": 67108864,
