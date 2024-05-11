@@ -22,7 +22,6 @@ window.Vue = require('vue').default;
 import ChatComponent from './Components/ChatComponent.vue';
 import PrivateChatComponent from './Components/PrivateChatComponent.vue';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('chat-component', ChatComponent);
 Vue.component('private-chat-component', PrivateChatComponent);
 
