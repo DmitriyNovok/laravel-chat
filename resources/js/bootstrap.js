@@ -27,7 +27,11 @@ window.io = require('socket.io-client');
 window.Echo = new Echo({
   broadcaster: 'socket.io',
   host: window.location.hostname + ':8443',
-  transports: ['websocket', 'polling', 'flashsocket']
+  wsHost: window.location.hostname,
+  wsPort: 8443,
+  wssPort: 8443,
+  disableStats: true,
+  enabledTransports: ['ws', 'wss'],
 });
 
 // window.Echo = new Echo({
