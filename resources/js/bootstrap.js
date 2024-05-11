@@ -26,11 +26,9 @@ window.io = require('socket.io-client');
 
 window.Echo = new Echo({
   broadcaster: 'socket.io',
-  host: "https://" + window.location.hostname + ':6001',
+  host: window.location.hostname + ':6001',
   transports: ['websocket', 'polling', 'flashsocket']
 });
-
-console.log(window.location.hostname + ':6001');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
