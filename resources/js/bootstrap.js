@@ -28,7 +28,8 @@ window.Echo = new Echo({
   broadcaster: 'socket.io',
   host: window.location.hostname + ':6001',
   transports: ['websocket', 'polling', 'flashsocket'],
-  withCredentials: true
+  withCredentials: true,
+  enabledTransports: ['ws', 'wss']
 });
 
 // window.Echo = new Echo({

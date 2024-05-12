@@ -5458,7 +5458,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'socket.io',
   host: window.location.hostname + ':6001',
   transports: ['websocket', 'polling', 'flashsocket'],
-  withCredentials: true
+  withCredentials: true,
+  enabledTransports: ['ws', 'wss']
 });
 
 // window.Echo = new Echo({
