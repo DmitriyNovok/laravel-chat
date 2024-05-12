@@ -5460,7 +5460,12 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   transports: ['websocket', 'polling', 'flashsocket'],
   withCredentials: true,
   enabledTransports: ['ws', 'wss'],
-  forceTLS: false
+  encrypted: true,
+  wsHost: window.location.hostname,
+  wsPort: 8443,
+  wssPort: 8443,
+  forceTLS: true,
+  disableStats: false
 });
 
 // window.Echo = new Echo({
