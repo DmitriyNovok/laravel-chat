@@ -29,7 +29,8 @@ window.Echo = new Echo({
   host: window.location.hostname + ':8443',
   transports: ['websocket', 'polling', 'flashsocket'],
   withCredentials: true,
-  enabledTransports: ['ws', 'wss']
+  enabledTransports: ['ws', 'wss'],
+  forceTLS: false
 });
 
 // window.Echo = new Echo({
