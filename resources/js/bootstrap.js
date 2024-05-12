@@ -26,7 +26,7 @@ window.io = require('socket.io-client');
 
 window.Echo = new Echo({
   broadcaster: 'socket.io',
-  host: window.location.hostname + ':6001',
+  host: window.location.hostname + ':8443',
   transports: ['websocket', 'polling', 'flashsocket'],
   withCredentials: true,
   enabledTransports: ['ws', 'wss']
